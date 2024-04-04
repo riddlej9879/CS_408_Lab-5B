@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Lab_5B-Chat-Client</string>
+    <string name="titleLbl">Simple Chat Client</string>
+    <string name="inputHint">Input Field</string>
+    <string name="postBtnTxt">POST</string>
+    <string name="clearBtnTxt">CLEAR</string>
 </resources>
