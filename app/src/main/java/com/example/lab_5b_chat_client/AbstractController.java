@@ -1,5 +1,7 @@
 package com.example.lab_5b_chat_client;
 
+import android.util.Log;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.lang.reflect.Method;
@@ -8,6 +10,8 @@ import java.util.ArrayList;
 public abstract class AbstractController implements PropertyChangeListener {
     private ArrayList<AbstractView> views;
     private ArrayList<AbstractModel> models;
+
+    private final String TAG = "Abstract Control";
 
     public AbstractController() {
         views = new ArrayList<>();
@@ -55,10 +59,12 @@ public abstract class AbstractController implements PropertyChangeListener {
         for (AbstractModel model : models) {
             try {
                 if (parameters == null) {
+                    Log.d(TAG, "invokeModelMethod: IF");
                     Method method = model.getClass().getMethod(methodName);
                     method.invoke(model);
                 }
                 else {
+                    Log.d(TAG, "invokeModelMethod: ELSE");
                     Method method = model.getClass().getMethod(methodName, parameters.getClass());
                     method.invoke(model, parameters);
                 }

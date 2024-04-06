@@ -15,12 +15,14 @@ public class MainActivity extends AppCompatActivity implements AbstractView {
     private ActivityMainBinding binding;
     private DefaultController controller;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        Log.d(TAG, "onCreate");
 
         /* Create Controller and Models */
         controller = new DefaultController();
@@ -35,7 +37,9 @@ public class MainActivity extends AppCompatActivity implements AbstractView {
         binding.postBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                controller.sendGetRequest();
+                String new_message = binding.inputTxt.toString();
+
+                model.sendPostRequest(new_message);
             }
         });
         binding.clearBtn.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements AbstractView {
 
     @Override
     public void modelPropertyChange(final PropertyChangeEvent evt) {
+        Log.d(TAG, "Prop Change");
         String propertyName = evt.getPropertyName();
         String propertyValue = evt.getNewValue().toString();
 
